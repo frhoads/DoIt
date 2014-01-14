@@ -46,10 +46,10 @@
 - (IBAction)onEditButtonPressed:(id)editButton
 {
     if (editButtonPressed == YES) {
-        [editButton setTitle:@"Done" forState:UIControlStateNormal];
+        [myEditButton setTitle:@"Done" forState:UIControlStateNormal];
         editButtonPressed = NO;
     } else {
-        [editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [myEditButton setTitle:@"Edit" forState:UIControlStateNormal];
         editButtonPressed = YES;
     }
     
