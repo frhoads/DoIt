@@ -27,10 +27,11 @@
     [super viewDidLoad];
     items = @[@"One", @"Two", @"Three"].mutableCopy;
     editButtonPressed = YES;
-    [myTableView setEditing:YES animated:YES];
 }
+
 - (IBAction)onAddButtonPressed:(id)sender
 {
+    // still adds empty item in table view
     [items addObject:myTextField.text];
     NSLog(@"%@", items);
     [myTableView reloadData];
@@ -39,12 +40,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editButtonPressed) {
         return YES;
-    } else {
-        return NO;
-    }
-    
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
@@ -80,9 +76,14 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     if (editButtonPressed == YES) {
         [myEditButton setTitle:@"Done" forState:UIControlStateNormal];
         editButtonPressed = NO;
+        [myTableView setEditing:YES animated:YES];
+        [myTableView reloadData];
     } else {
         [myEditButton setTitle:@"Edit" forState:UIControlStateNormal];
         editButtonPressed = YES;
+        [myTableView setEditing:NO animated:NO];
+        [myTableView reloadData];
+
     }
     
 }
