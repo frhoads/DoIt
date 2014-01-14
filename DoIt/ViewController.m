@@ -27,6 +27,7 @@
     [super viewDidLoad];
     items = @[@"One", @"Two", @"Three"].mutableCopy;
     editButtonPressed = YES;
+    [myTableView setEditing:YES animated:YES];
 }
 - (IBAction)onAddButtonPressed:(id)sender
 {
@@ -35,6 +36,27 @@
     [myTableView reloadData];
     myTextField.text = @"";
     [myTextField resignFirstResponder];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editButtonPressed) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView
+targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+       toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    
+    return proposedDestinationIndexPath;
 }
 
 - (IBAction)onSwipeRight:(UIGestureRecognizer*)swipe {
@@ -51,8 +73,6 @@
         }
         
     }
-    
-    swipedCell.textLabel.textColor = [UIColor redColor];
 }
 
 - (IBAction)onEditButtonPressed:(id)editButton
