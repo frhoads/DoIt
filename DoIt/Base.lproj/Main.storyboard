@@ -78,7 +78,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="jkC-tm-QIs">
                     <connections>
-                        <action selector="onSwipeRight:" destination="vXZ-lx-hvc" id="Ryr-M0-CzY"/>
+                        <action selector="onSwipeRight:" destination="vXZ-lx-hvc" id="Mcx-c9-3Og"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

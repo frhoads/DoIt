@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>{
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>{
     
     __weak IBOutlet UITableView *myTableView;
     __weak IBOutlet UITextField *myTextField;
@@ -37,10 +37,22 @@
     [myTextField resignFirstResponder];
 }
 
-- (IBAction)onSwipeRight:(id)sender {
-    NSArray *colors = @[[UIColor greenColor], [UIColor yellowColor], [UIColor redColor], [UIColor blackColor]];
+- (IBAction)onSwipeRight:(UIGestureRecognizer*)swipe {
+    CGPoint swipeLocation = [swipe locationInView:myTableView];
+    NSIndexPath *swipedIndexPath = [myTableView indexPathForRowAtPoint:swipeLocation];
+    UITableViewCell *swipedCell = [myTableView cellForRowAtIndexPath:swipedIndexPath];
     
+    NSArray *colors = @[[UIColor blackColor], [UIColor greenColor], [UIColor yellowColor], [UIColor redColor], [UIColor blackColor]];
     
+    for (int i = 0; i < colors.count; i++) {
+        if (colors[i] == swipedCell.textLabel.textColor){
+            swipedCell.textLabel.textColor = colors[i+1];
+            i = colors.count;
+        }
+        
+    }
+    
+    swipedCell.textLabel.textColor = [UIColor redColor];
 }
 
 - (IBAction)onEditButtonPressed:(id)editButton
